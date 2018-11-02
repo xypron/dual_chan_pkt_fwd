@@ -26,6 +26,12 @@ clean:
 	rm -f *.o dual_chan_pkt_fwd
 
 install:
+	sudo systemctl stop dual_chan_pkt_fwd || true
+	sudo mkdir -p /usr/local/bin/
+	sudo cp dual_chan_pkt_fwd /usr/local/bin
+	mkdir -p /etc/dual_chan_pkt_fwd/
+	test -f /etc/dual_chan_pkt_fwd/global_conf.json || \
+	cp global_conf.json /etc/dual_chan_pkt_fwd/
 	sudo cp -f ./dual_chan_pkt_fwd.service /lib/systemd/system/
 	sudo systemctl enable dual_chan_pkt_fwd.service
 	sudo systemctl daemon-reload

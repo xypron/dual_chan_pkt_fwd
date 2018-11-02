@@ -523,7 +523,7 @@ int main()
   uint32_t lasttime;
   unsigned int led0_timer,led1_timer;
 
-  LoadConfiguration("global_conf.json");
+  LoadConfiguration("/etc/dual_chan_pkt_fwd/global_conf.json");
   PrintConfiguration();
 
   // Init WiringPI
@@ -762,6 +762,12 @@ void LoadConfiguration(string configurationFile)
 {
   FILE* p_file = fopen(configurationFile.c_str(), "r");
   char buffer[65536];
+
+  if (!p_file) {
+    cerr << "Could not open " << configurationFile.c_str() << endl;
+    perror("fopen");
+    exit(1);
+  }
   FileReadStream fs(p_file, buffer, sizeof(buffer));
 
   Document document;
