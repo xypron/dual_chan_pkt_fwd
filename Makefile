@@ -3,7 +3,7 @@
 
 CC = g++
 CFLAGS = -std=c++11 -c -Wall -I include/
-LIBS = -lwiringPi -lpthread 
+LIBS = -lwiringPi -lpthread
 
 all: dual_chan_pkt_fwd
 
