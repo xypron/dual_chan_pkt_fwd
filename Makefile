@@ -23,7 +23,7 @@ LoraModem.o: LoraModem.c LoraModem.h
 	$(CC) $(CFLAGS) LoraModem.c
 
 clean:
-	rm *.o dual_chan_pkt_fwd
+	rm -f *.o dual_chan_pkt_fwd
 
 install:
 	sudo cp -f ./dual_chan_pkt_fwd.service /lib/systemd/system/
